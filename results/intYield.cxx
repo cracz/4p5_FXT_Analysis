@@ -26,11 +26,11 @@ void intYield(TString jobID, TString fitType)
   Double_t min = pp_MvsY->GetXaxis()->GetXmin();
   Double_t max = pp_MvsY->GetXaxis()->GetXmax();
 
-  TH1D *pp_yield = new TH1D("pp_yield", "#pi^{+} Rapidity (Integrated);y;N", nbins, min, max);
-  TH1D *pm_yield = new TH1D("pm_yield", "#pi^{-} Rapidity (Integrated);y;N", nbins, min, max);
-  TH1D *kp_yield = new TH1D("kp_yield", "K^{+} Rapidity (Integrated);y;N",   nbins, min, max);
-  TH1D *km_yield = new TH1D("km_yield", "K^{-} Rapidity (Integrated);y;N",   nbins, min, max);
-  TH1D *pr_yield = new TH1D("pr_yield", "Proton Rapidity (Integrated);y;N",  nbins, min, max);
+  TH1D *pp_yield = new TH1D("pp_yield", "#pi^{+} Rapidity (Integrated);y;dN/dy", nbins, min, max);
+  TH1D *pm_yield = new TH1D("pm_yield", "#pi^{-} Rapidity (Integrated);y;dN/dy", nbins, min, max);
+  TH1D *kp_yield = new TH1D("kp_yield", "K^{+} Rapidity (Integrated);y;dN/dy",   nbins, min, max);
+  TH1D *km_yield = new TH1D("km_yield", "K^{-} Rapidity (Integrated);y;dN/dy",   nbins, min, max);
+  TH1D *pr_yield = new TH1D("pr_yield", "Proton Rapidity (Integrated);y;dN/dy",  nbins, min, max);
 
   Double_t m0_pi = 0.1396;   //Rest masses
   Double_t m0_ka = 0.4937;
@@ -54,11 +54,11 @@ void intYield(TString jobID, TString fitType)
   file->Close();
 
   std::cout << "Integrated yields saved to " + outputName + "." << std::endl;
-  /*
+
   std::cout << "Plotting results..." << std::endl;
 
   gROOT->ProcessLine(".x overlay.cxx(\""+jobID+"\",\""+fitType+"\")");
-  */
+
 }//End intYield()
 
 

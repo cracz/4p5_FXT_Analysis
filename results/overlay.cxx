@@ -48,6 +48,7 @@ void overlay(TString jobID, TString fitType)
   TCanvas *canvas = new TCanvas("canvas", "Title", 875, 675);
   canvas->SetGrid();
   canvas->SetTicks();
+  canvas->SetLeftMargin(0.13);
   gStyle->SetOptStat(0);
   
   TLegend *leg = new TLegend(0.72,0.72,0.9,0.9);
@@ -55,33 +56,36 @@ void overlay(TString jobID, TString fitType)
 
   for (Int_t i = 0; i < rawArray->GetEntriesFast(); i++)
     {
-      ((TH1D*)rawArray->At(i))->SetMarkerStyle(27);
-      ((TH1D*)rawArray->At(i))->SetMarkerColor(4);
-      ((TH1D*)rawArray->At(i))->SetMarkerSize(2.5);
-      ((TH1D*)rawArray->At(i))->SetLineColor(4);
+      TH1D *rawYield = (TH1D*)rawArray->At(i);
+      TH1D *intYield = (TH1D*)intArray->At(i);
 
-      ((TH1D*)intArray->At(i))->SetMarkerStyle(24);
-      ((TH1D*)intArray->At(i))->SetMarkerColor(2);
-      ((TH1D*)intArray->At(i))->SetMarkerSize(1.5);
-      ((TH1D*)intArray->At(i))->SetLineColor(2);
+      rawYield->SetMarkerStyle(27);
+      rawYield->SetMarkerColor(4);
+      rawYield->SetMarkerSize(2.5);
+      rawYield->SetLineColor(4);
 
-      ((TH1D*)intArray->At(i))->DrawClone("E1");
-      ((TH1D*)rawArray->At(i))->DrawClone("E1 SAME");
+      intYield->SetMarkerStyle(24);
+      intYield->SetMarkerColor(2);
+      intYield->SetMarkerSize(1.5);
+      intYield->SetLineColor(2);
+      intYield->SetTitleOffset(1.4, "y");
 
-      ((TH1D*)intArray->At(i))->SetMarkerStyle(1);
-      ((TH1D*)rawArray->At(i))->SetMarkerStyle(1);
-      ((TH1D*)intArray->At(i))->Draw("E1 SAME");
-      ((TH1D*)rawArray->At(i))->Draw("E1 SAME");
-  
+      intYield->DrawClone("E1");
+      rawYield->DrawClone("E1 SAME");
+
+      intYield->SetMarkerStyle(1);
+      rawYield->SetMarkerStyle(1);
+      intYield->Draw("E1 SAME");
+      rawYield->Draw("E1 SAME");
+
       leg->Clear();
-      leg->AddEntry(((TH1D*)rawArray->At(i))->GetName(), "Raw", "ep");
-      leg->AddEntry(((TH1D*)intArray->At(i))->GetName(), "Integrated", "ep");
+      leg->AddEntry(rawYield->GetName(), "Raw", "ep");
+      leg->AddEntry(intYield->GetName(), "Integrated", "ep");
       leg->Draw();
 
       canvas->Update();
-      canvas->SaveAs(jobID+"."+((TH1D*)rawArray->At(i))->GetName()+"_fit"+fitType+"_overlay.png");
+      canvas->SaveAs(jobID+"."+rawYield->GetName()+"_fit"+fitType+"_overlay.png");
       canvas->Clear();
-      
     }
 
   canvas->Close();
