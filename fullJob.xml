@@ -11,21 +11,21 @@
   <!-- Necessary files -->
   <SandBox installer="ZIP">
     <Package>
-      <File>file:/star/data01/pwg/cracz/pid/source/StRoot/</File>
-      <File>file:/star/data01/pwg/cracz/pid/source/loadAnalyzer.cxx</File>
-      <File>file:/star/data01/pwg/cracz/pid/source/picoAnalyzer.cxx</File>
+      <File>file:/star/data01/pwg/cracz/4p5_FXT_Analysis/source/StRoot/</File>
+      <File>file:/star/data01/pwg/cracz/4p5_FXT_Analysis/source/loadAnalyzer.cxx</File>
+      <File>file:/star/data01/pwg/cracz/4p5_FXT_Analysis/source/picoAnalyzer.cxx</File>
     </Package>
   </SandBox>
 
   <!-- Get input files from get_file_lis.pl -->
-  <!--input URL="filelist:/star/data01/pwg/cracz/pid/input/test.lis" nFiles="all" /-->
+  <!--input URL="filelist:/star/data01/pwg/cracz/4p5_FXT_Analysis/input/test.lis" nFiles="all" /-->
   <!--input URL="file:/star/data01/pwg/ywu27/PicoDst/*.root" nFiles="all" /-->
-  <!--input URL="filelist:/star/data01/pwg/cracz/pid/input/run15_4p5_fxt_files.list" nFiles="all" /-->
-  <input URL="filelist:/star/data01/pwg/cracz/pid/input/working.list" nFiles="all" />
+  <!--input URL="filelist:/star/data01/pwg/cracz/4p5_FXT_Analysis/input/run15_4p5_fxt_files.list" nFiles="all" /-->
+  <input URL="filelist:/star/data01/pwg/cracz/4p5_FXT_Analysis/input/working.list" nFiles="all" />
   
   <!-- Run log & error messages -->
-  <stdout URL="file:/star/data01/pwg/cracz/pid/out/$JOBID.out" />
-  <stderr URL="file:/star/data01/pwg/cracz/pid/out/$JOBID.err" />
-  <output fromScratch="*.root" toURL="file:/star/data01/pwg/cracz/pid/results/"/>
+  <stdout URL="file:/star/data01/pwg/cracz/4p5_FXT_Analysis/out/$JOBID.out" />
+  <stderr URL="file:/star/data01/pwg/cracz/4p5_FXT_Analysis/out/$JOBID.err" />
+  <output fromScratch="*.root" toURL="file:/star/data01/pwg/cracz/4p5_FXT_Analysis/results/"/>
   
 </job>
