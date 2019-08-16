@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!-- Job parameters -->
+<job maxFilesPerProcess="1" filesPerHour="1" fileListSyntax="xrootd">
+
+  <!-- Task list -->
+  <command>
+    root -q -b -l loadAnalyzer.cxx picoAnalyzer.cxx+\(\"$FILELIST\",\"$JOBID\"\)
+  </command>
+
+  <!-- Necessary files -->
+  <SandBox installer="ZIP">
+    <Package>
+      <File>file:/star/data01/pwg/cracz/pid/source/StRoot/</File>
+      <File>file:/star/data01/pwg/cracz/pid/source/loadAnalyzer.cxx</File>
+      <File>file:/star/data01/pwg/cracz/pid/source/picoAnalyzer.cxx</File>
+    </Package>
+  </SandBox>
+
+  <!-- Get input files from get_file_lis.pl -->
+  <input URL="filelist:/star/data01/pwg/cracz/pid/input/test.lis" nFiles="all" />
+  <!--input URL="filelist:/star/data01/pwg/cracz/pid/input/patch.list" nFiles="all" /-->
+  
+  <!-- Run log & error messages -->
+  <stdout URL="file:/star/data01/pwg/cracz/pid/out/$JOBID.out" />
+  <stderr URL="file:/star/data01/pwg/cracz/pid/out/$JOBID.err" />
+  <output fromScratch="*.root" toURL="file:/star/data01/pwg/cracz/pid/results/"/>
+  
+</job>
