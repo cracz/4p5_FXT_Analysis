@@ -16,7 +16,7 @@ Package for analyzing 4.5 GeV Au+Au Fixed Target data (but without necessary StR
 ### Patching an incomplete analysis
 * In some cases the main analysis will fail for some subset of the input files and the corresponding output files will be missing from the `results/` directory.
 * If this happens, and only a few files are missing, move all analyzed files to the `patchTable/`.
-  * Remove all job IDs using `rename [jobID]_ "" \*` (make sure to include the underscore after the job ID and the empty quotation marks as the replacement)
+  * Remove all job IDs using `rename [jobID]_ "" *` (make sure to include the underscore after the job ID and the empty quotation marks as the replacement)
   * Use `findHoles.sh` to show which files are missing so that when you submit the job again, you can use the second job submission to copy over the missing files. (If the second job submission is fully successful, just delete these files in `patchTable/`).
   * Once the file set in `patchTable/` is complete, use `prependID.sh` to add whatever job ID or identifier you want to the front of all of the files. (!!A job ID at the beginning of the files is necessary for the rest of the code to work!!)
   * Now the file set is patched and can be combined back in the `results/` directory.
