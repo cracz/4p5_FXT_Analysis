@@ -204,7 +204,7 @@ void fillIntYield(TH2D *MvsY, TH1D *dndy, TString fitType, Float_t mass, TFile *
       TFitResultPtr result2;
       Int_t NDF = func->GetNDF();
   
-      if (/*result1 == -1 ||*/ !result1->IsValid())    // UNCOMMENT IF USING ROOT 6
+      if (result1 == -1 || !result1->IsValid())    // UNCOMMENT IF USING ROOT 6
 	{
 	  MatY    = (TH1D*)MatY->Rebin();
 	  result2 = MatY->Fit(func->GetName(), "QES0", "", minFitR, maxFitR);

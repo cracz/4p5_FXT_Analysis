@@ -250,7 +250,7 @@ void picoAnalyzer(TString inFile, TString outFile)
 
 	  Double_t d_tofBeta = trait->btofBeta();
 
-	  if (d_tofBeta < 0.005) continue;
+	  if (d_tofBeta < 0.005 || d_tofBeta >= 1) continue;
 	  
 	  h_TOF_beta->Fill(d_tofBeta);
 

@@ -26,6 +26,7 @@ void plot(TString jobID)
       canvas->SetGrid();     //Draw grid lines
       gStyle->SetOptStat(1); //Reset stat box
       gStyle->SetPalette();  //Reset color palette
+      TPaveStats *stats;
 
       Bool_t errors = false; //Draw error bars
       
@@ -35,8 +36,16 @@ void plot(TString jobID)
 	{
 	  canvas->SetRightMargin(0.13);
 	  gStyle->SetOptStat(11);
-	  gStyle->SetPalette(53); //kDarkBodyRadiator
+	  gStyle->SetPalette(kRainBow);//53); //kDarkBodyRadiator
 	  canvas->SetLogz();
+
+	  hist->Draw();
+	  gPad->Update();
+	  stats = (TPaveStats*)hist->FindObject("stats");
+	  stats->SetX1NDC(0.7);
+	  stats->SetY1NDC(0.905);
+	  stats->SetX2NDC(0.92);
+	  stats->SetY2NDC(0.99);
 
 	  if (name.Contains("dEdx"))
 	    {
@@ -49,14 +58,21 @@ void plot(TString jobID)
 	  else if (name.Contains("vtx"))
 	    {
 	      hist->GetZaxis()->SetRangeUser(1,10000);
+	      stats->SetX1NDC(0.67);
+	      stats->SetY1NDC(0.8);
+	      stats->SetX2NDC(0.87);
+	      stats->SetY2NDC(0.9);
 	    }
 	  else if (name.Contains("MvsY"))
 	    {
-	      canvas->SetLogz(0);
+	      stats->SetX1NDC(0.7);
+	      stats->SetY1NDC(0.8);
+	      stats->SetX2NDC(0.87);
+	      stats->SetY2NDC(0.9);
 	    }
 
-	  hist->Draw("COLZ");
 	  canvas->Update();
+	  hist->Draw("COLZ");
 	}
       else if (cl->InheritsFrom("TH1"))
 	{
